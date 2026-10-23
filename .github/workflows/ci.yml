@@ -62,11 +62,6 @@ jobs:
       - name: Install frontend dependencies
         run: npm ci
 
-      - name: Install Chrome for Angular tests
-        uses: browser-actions/setup-chrome@v1
-        with:
-          chrome-version: stable
-
       - name: Build frontend
         run: npm run build
 
@@ -87,7 +82,7 @@ jobs:
           fetch-depth: 0
 
       - name: SonarCloud scan
-        uses: SonarSource/sonarcloud-github-action@master
+        uses: SonarSource/sonarcloud-github-action@v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
