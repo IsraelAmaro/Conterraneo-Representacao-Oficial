@@ -87,8 +87,25 @@ jobs:
           distribution: temurin
           java-version: '21'
 
+      - name: Download SonarScanner CLI
+        run: |
+          curl -sSLo sonar-scanner.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-6.2.1.4610-linux-x64.zip
+          unzip -q sonar-scanner.zip
+          echo "$PWD/sonar-scanner-6.2.1.4610-linux-x64/bin" >> "$GITHUB_PATH"
+
       - name: SonarCloud scan
-        uses: SonarSource/sonarcloud-github-action@v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: https://sonarcloud.io
+        run: |
+          sonar-scanner \
+            -Dsonar.organization=conterraneo \
+            -Dsonar.projectKey=conterraneo-representacoes \
+            -Dsonar.projectName="Conterraneo Representacoes" \
+            -Dsonar.sources=backend/conterraneo-backend/src,frontend/src \
+            -Dsonar.tests=backend/conterraneo-backend/src/test,frontend/src \
+            -Dsonar.java.binaries=backend/conterraneo-backend/target/classes \
+            -Dsonar.java.source=21 \
+            -Dsonar.login="${SONAR_TOKEN}" \
+            -Dsonar.host.url="${SONAR_HOST_URL}"
