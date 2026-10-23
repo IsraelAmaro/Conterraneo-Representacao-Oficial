@@ -103,8 +103,10 @@ jobs:
             -Dsonar.organization=israelamaro \
             -Dsonar.projectKey=israelamaro \
             -Dsonar.projectName="Conterraneo Representacoes" \
-            -Dsonar.sources=backend/conterraneo-backend/src,frontend/src \
-            -Dsonar.tests=backend/conterraneo-backend/src/test,frontend/src \
+            -Dsonar.sources=backend/conterraneo-backend/src/main/java,frontend/src \
+            -Dsonar.tests=backend/conterraneo-backend/src/test/java,frontend/src \
+            -Dsonar.test.inclusions="**/*.spec.ts" \
+            -Dsonar.exclusions="**/node_modules/**,**/target/**,**/dist/**,**/*.spec.ts,**/src/test/**" \
             -Dsonar.java.binaries=backend/conterraneo-backend/target/classes \
             -Dsonar.java.source=21 \
             -Dsonar.login="${SONAR_TOKEN}" \
