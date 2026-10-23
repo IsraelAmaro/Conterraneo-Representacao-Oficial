@@ -81,6 +81,12 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Set up JDK 21 for SonarCloud
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+
       - name: SonarCloud scan
         uses: SonarSource/sonarcloud-github-action@v2
         env:
