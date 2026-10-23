@@ -100,8 +100,8 @@ jobs:
           SONAR_HOST_URL: https://sonarcloud.io
         run: |
           sonar-scanner \
-            -Dsonar.organization=conterraneo \
-            -Dsonar.projectKey=conterraneo-representacoes \
+            -Dsonar.organization=israelamaro \
+            -Dsonar.projectKey=israelamaro \
             -Dsonar.projectName="Conterraneo Representacoes" \
             -Dsonar.sources=backend/conterraneo-backend/src,frontend/src \
             -Dsonar.tests=backend/conterraneo-backend/src/test,frontend/src \
